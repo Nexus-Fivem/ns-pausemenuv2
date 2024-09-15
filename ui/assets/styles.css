@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap'); 
+
+body {
+    font-family: 'Roboto Mono';
+    color: white;
+}
+
+.root {
+    display: none;
+    perspective: 600px;
+}
+
+.pausemenu {
+    width: 27vh;
+    position: absolute;
+    transition: 0.1s;
+    transform-style: flat;
+}
+
+::selection {
+    color: #16FF8F;
+  }
+
+.pausemenu-leftside {
+    float: left;
+}
+
+.leftside-triangle {
+    width: 0;
+    height: 0;
+    border-top: 1.5vh solid transparent;
+    border-right: 2.5vh solid #ffffff;
+    border-bottom: 1.5vh solid transparent;
+    position: relative;
+    top: 11.5vh;
+}
+
+.pausemenu-border {
+    float: left;
+    width: 0.5vh;
+    height: 28.5vh;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 20px 0px white;
+    z-index: 5;
+}
+
+.pausemenu-rightside {
+    float: right;
+}
+
+.rightside-charactername {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    position: absolute;
+    top: -2vh;
+}
+
+.characternameicon {
+    margin-right: 8px;
+    color: #16FF8F;
+    text-shadow: 0 0 12px #16FF8F;
+}
+
+.charactername {
+    font-weight: 500
+}
+
+.rightside-buttons {
+    width: 22.6vh;
+    height: 21vh;
+    z-index: 9;
+}
+
+.button {
+    position: relative;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background: white;
+    width: 100%;
+    height: 5vh;
+    margin-top: 1.4vh;
+    box-shadow: 0px 0px 20px 0px white;
+    border: 0.3vh solid #d6d6d6;
+    font-size: 2.4vh;
+    transition: 0.5s;
+    font-weight: 700;
+    z-index: 10;
+}
+
+.button:hover {
+    box-shadow: 0px 0px 20px 0px #16FF8F;
+    border: 0.3vh solid #16FF8F;
+    background-color: #16FF8F;
+    background-image: var(--waves);
+    width: 105%;
+    font-size: 2.5vh;
+    transition: 0.5s;
+    z-index: 11; 
+}
+
+.button-icon {
+    margin: 0px 1vh 0px 2vh;
+}
