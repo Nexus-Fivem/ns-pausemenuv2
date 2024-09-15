@@ -86,7 +86,6 @@ end
 
 
 local function PauseMenu()
-    SetFrontendActive(0)
     local PlayerData = QBCore.Functions.GetPlayerData()
     SetNuiFocus(true, true)
     CreateCamera() 
@@ -116,10 +115,16 @@ local function CloseMenu()
 end
 
 CreateThread(function()
+    while true do 
+        SetPauseMenuActive(false)
+        Wait(0)
+    end
+end)
+
+CreateThread(function()
     DisableIdleCamera(true)
     while true do 
-            SetPauseMenuActive(false)
-        if IsControlJustPressed(0, 200) or IsControlJustPressed(0, 199) then 
+        if IsControlJustPressed(0, 200) or IsControlJustPressed(0, 199) then
             if not acik then
                 acik = true
                 PauseMenu()
@@ -135,11 +140,20 @@ RegisterNUICallback('continue', function(data, cb)
 end)
 
 RegisterNUICallback('map', function(data, cb)
+    menu = true
     CloseMenu()
     Wait(100)
-    ActivateFrontendMenu(GetHashKey('FE_MENU_VERSION_MP_PAUSE'), 0, -1)
-    Wait(100)
-    PauseMenuceptionGoDeeper(0)
+    ActivateFrontendMenu(GetHashKey('FE_MENU_VERSION_MP_PAUSE'),0,-1)
+    Wait(50)
+    PauseMenuceptionGoDeeper(1000)
+    SetNuiFocus(false, false)
+    while true do
+        Wait(1)
+        if IsControlJustPressed(0, 200) then
+            SetFrontendActive(0)
+            break
+        end
+    end
     cb('ok')
 end)
 
