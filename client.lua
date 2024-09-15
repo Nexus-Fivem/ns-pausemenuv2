@@ -86,6 +86,7 @@ end
 
 
 local function PauseMenu()
+    SetFrontendActive(0)
     local PlayerData = QBCore.Functions.GetPlayerData()
     SetNuiFocus(true, true)
     FreezeEntityPosition(PlayerPedId(), Config.FreezePlayer)
@@ -122,8 +123,7 @@ CreateThread(function()
             SetPauseMenuActive(false)
             if not acik then
                 acik = true
-                SetFrontendActive(0)
-                PauseMenu(acik)
+                PauseMenu()
             end
         end
         Wait(0)
