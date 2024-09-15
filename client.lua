@@ -89,7 +89,6 @@ local function PauseMenu()
     SetFrontendActive(0)
     local PlayerData = QBCore.Functions.GetPlayerData()
     SetNuiFocus(true, true)
-    FreezeEntityPosition(PlayerPedId(), Config.FreezePlayer)
     CreateCamera()  -- Kamerayı burada oluştur
     Wait(Config.EaseTime)
 
