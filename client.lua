@@ -173,5 +173,5 @@ RegisterCommand(Config.FixMenuCommand, function()
 end)
 
 local function IsInPause()
-    return acik
+    return acik or IsPauseMenuActive()
 end exports('IsInPause', IsInPause)
