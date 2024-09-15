@@ -89,7 +89,7 @@ local function PauseMenu()
     SetFrontendActive(0)
     local PlayerData = QBCore.Functions.GetPlayerData()
     SetNuiFocus(true, true)
-    CreateCamera()  -- Kamerayı burada oluştur
+    CreateCamera() 
     Wait(Config.EaseTime)
 
     local BoneCoords = GetPedBoneCoords(PlayerPedId(), 60309, -0.6, 0.0, 0.0)
