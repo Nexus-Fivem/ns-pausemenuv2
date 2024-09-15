@@ -118,7 +118,7 @@ end
 CreateThread(function()
     DisableIdleCamera(true)
     while true do 
-        if IsControlJustPressed(0, 200) or IsControlJustPressed(0, 199) or  IsControlJustPressed(0, 38) then 
+        if IsControlJustPressed(0, 200) or IsControlJustPressed(0, 199) then 
             SetPauseMenuActive(false)
             if not acik then
                 acik = true
