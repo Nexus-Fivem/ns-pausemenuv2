@@ -16,6 +16,8 @@ Config.CamRot = { -- If you don't know much, DO NOT TOUCH !
     z = 1
 }
 
+Config.Core = "QBCore" -- QBCore or ESX
+
 Config.EaseTime = 1000 -- MiliSeconds
 
 Config.FixMenuCommand = "fixmenu"
