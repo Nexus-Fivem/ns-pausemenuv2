@@ -1,4 +1,3 @@
-local QBCore = exports['qb-core']:GetCoreObject()
 local acik = false
 local cam = nil
 local locale = Config.Locale
@@ -83,10 +82,17 @@ local function CreateCameraVehicle()
     end)
 end
 
-
-
 local function PauseMenu()
-    local PlayerData = QBCore.Functions.GetPlayerData()
+    local name = nil
+    if Config.Core == "QBCore" then 
+        local QBCore = exports['qb-core']:GetCoreObject()
+        local PlayerData = QBCore.Functions.GetPlayerData()
+        name = PlayerData.charinfo.firstname.." "..PlayerData.charinfo.lastname
+    elseif Config.Core == "ESX" then 
+            ESX = exports["es_extended"]:getSharedObject()
+        local PlayerData = ESX.GetPlayerData()
+        name = PlayerData.firstName.." "..PlayerData.lastName
+    end
     SetNuiFocus(true, true)
     CreateCamera() 
     Wait(Config.EaseTime)
@@ -98,7 +104,7 @@ local function PauseMenu()
         x = screenX,
         y = screenY,
         locale = locale,
-        name = PlayerData.charinfo.firstname.." "..PlayerData.charinfo.lastname
+        name = name
     })
 end
 
@@ -144,7 +150,7 @@ RegisterNUICallback('map', function(data, cb)
     CloseMenu()
     Wait(100)
     ActivateFrontendMenu(GetHashKey('FE_MENU_VERSION_MP_PAUSE'),0,-1)
-    Wait(50)
+    Wait(60)
     PauseMenuceptionGoDeeper(1000)
     SetNuiFocus(false, false)
     while true do
@@ -171,7 +177,3 @@ end)
 RegisterCommand(Config.FixMenuCommand, function()
     CloseMenu()
 end)
-
-local function IsInPause()
-    return acik or IsPauseMenuActive()
-end exports('IsInPause', IsInPause)
