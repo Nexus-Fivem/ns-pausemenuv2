@@ -92,6 +92,10 @@ local function PauseMenu()
             ESX = exports["es_extended"]:getSharedObject()
         local PlayerData = ESX.GetPlayerData()
         name = PlayerData.firstName.." "..PlayerData.lastName
+    elseif Config.Core == "oldESX" then
+        TriggerEvent('esx:getSharedObject', function(libary)
+                ESX = libary
+            end)
     end
     SetNuiFocus(true, true)
     CreateCamera() 
