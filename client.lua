@@ -192,3 +192,9 @@ end)
 RegisterCommand(Config.FixMenuCommand, function()
     CloseMenu()
 end)
+
+
+local function IsInPause()
+    return acik or IsPauseMenuActive()
+end 
+exports('IsInPause', IsInPause)
