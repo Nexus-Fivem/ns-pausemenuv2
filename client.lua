@@ -1,6 +1,7 @@
 local acik = false
 local cam = nil
 local locale = Config.Locale
+local name = nil
 
 local function UpdateCamera()
     if cam then
@@ -82,8 +83,19 @@ local function CreateCameraVehicle()
     end)
 end
 
+local function GetOldESX()
+    ESX = nil
+    while ESX == nil do
+        TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+        Wait(0)
+    end
+    Wait(10)
+    local firstName = ESX.PlayerData.firstName
+    local lastName = ESX.PlayerData.lastName
+    name = firstName.." "..lastName
+end
+
 local function PauseMenu()
-    local name = nil
     if Config.Core == "QBCore" then 
         local QBCore = exports['qb-core']:GetCoreObject()
         local PlayerData = QBCore.Functions.GetPlayerData()
@@ -92,6 +104,9 @@ local function PauseMenu()
             ESX = exports["es_extended"]:getSharedObject()
         local PlayerData = ESX.GetPlayerData()
         name = PlayerData.firstName.." "..PlayerData.lastName
+    elseif Config.Core == "OldESX" then
+        Wait(10)
+        GetOldESX()
     end
     SetNuiFocus(true, true)
     CreateCamera() 
