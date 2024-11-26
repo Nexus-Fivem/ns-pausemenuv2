@@ -124,15 +124,15 @@ local function PauseMenu()
 end
 
 local function CloseMenu()
-    acik = false
-    DestroyCam(cam)
-    FreezeEntityPosition(PlayerPedId(), false)
-    SetNuiFocus(false, false)
-    SetCamActive(cam, false)
-    RenderScriptCams(false, true, Config.EaseTime, true, true)
-    SendNUIMessage({
-        type = "closemenu"
-    })
+        acik = false
+        DestroyCam(cam)
+        FreezeEntityPosition(PlayerPedId(), false)
+        SetNuiFocus(false, false)
+        SetCamActive(cam, false)
+        RenderScriptCams(false, true, Config.EaseTime, true, true)
+        SendNUIMessage({
+            type = "closemenu"
+        })
 end
 
 CreateThread(function()
@@ -146,9 +146,11 @@ CreateThread(function()
     DisableIdleCamera(true)
     while true do 
         if IsControlJustPressed(0, 200) or IsControlJustPressed(0, 199) then
-            if not acik then
-                acik = true
-                PauseMenu()
+            if not IsPauseMenuActive() then
+                if not acik then
+                    acik = true
+                    PauseMenu()
+                end
             end
         end
         Wait(0)
@@ -163,10 +165,10 @@ end)
 RegisterNUICallback('map', function(data, cb)
     menu = true
     CloseMenu()
-    Wait(100)
+--[[     Wait(100) ]]
     ActivateFrontendMenu(GetHashKey('FE_MENU_VERSION_MP_PAUSE'),0,-1)
-    Wait(60)
-    PauseMenuceptionGoDeeper(1000)
+    Wait(100)
+    PauseMenuceptionGoDeeper(0)
     SetNuiFocus(false, false)
     while true do
         Wait(1)
